@@ -1,0 +1,57 @@
+<!doctype html>
+<head>
+  <!-- Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <!-- Styles -->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+
+  <!-- Scripts -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+  <script src="js/jquery-2.1.4.js"></script>
+  <script src="js/calculator.js"></script>
+  <title>Energy Saving Calculator</title>
+
+  <!-- Styles -->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+
+  <section id="buttons" style="overflow: hidden; padding-bottom: 20px;">
+    <div class="btn-savings-calculator">
+      Energy Saving Calculator
+    </div>
+    <div class="btn-recommend">
+      Recommend a replacement
+    </div>
+  </section>
+
+<section id="calc-container">
+  <div id="content">
+    <div class="heading">
+      <h1>Energy Saving Calculator</h1>
+      <p>This Energy Saving Calculator is used to determine your annual energy savings. when replacing your lighting solution.</p>
+    </div>
+    <section id="step1">
+      <div class="hdr-step">
+        <h2>Step 1</h2>
+      </div>
+      <div class="content">
+        <p>Calculate the total power (kilowatts, kW) saved by upgrading your lighting.</p>
+
+        <div ng-app="" ng-init="">
+          Original Watts: <input type="number" ng-model="original-wats">
+          Replacement Watts: <input type="number" ng-model="replacement-wats">
+          Number of Lamps: <input type="number" ng-model="number-of-lamps">
+
+          Total: {{(original-wats - replacement-wats)*number-of-lamps}}
+        </div>
+      </div>
+    </section>
+  </div>
+</section>
+
+</body>
+</html>
