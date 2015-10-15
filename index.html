@@ -6,6 +6,7 @@
 
   <!-- Styles -->
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
 
   <!-- Scripts -->
   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
@@ -34,22 +35,69 @@
       <h1>Energy Saving Calculator</h1>
       <p>This Energy Saving Calculator is used to determine your annual energy savings. when replacing your lighting solution.</p>
     </div>
-    <section id="step1">
-      <div class="hdr-step">
-        <h2>Step 1</h2>
-      </div>
-      <div class="content">
-        <p>Calculate the total power (kilowatts, kW) saved by upgrading your lighting.</p>
 
-        <div ng-app="" ng-init="">
-          Original Watts: <input type="number" ng-model="original-wats">
-          Replacement Watts: <input type="number" ng-model="replacement-wats">
-          Number of Lamps: <input type="number" ng-model="number-of-lamps">
+    <div class="hdr-step">
+      <h2>Calculator</h2>
+    </div>
+    <div class="content">
+      <p>Calculate the total power (kilowatts, kW) saved by upgrading your lighting.</p>
 
-          Total: {{(original-wats - replacement-wats)*number-of-lamps}}
-        </div>
+      <div ng-app="calcApp" ng-init="" ng-controller="myCtrl1">
+        <table class="tblContainer">
+          <tr>
+            <td class="tblTxt">Original Watts:</td>
+            <td><input ng-model="OriginalWatts" class="tblInput"></td>
+          </tr>
+          <tr>
+            <td class="tblTxt">Replacement Watts:</td>
+            <td><input ng-model="ReplacementWatts" class="tblInput"></td>
+          </tr>
+          <tr>
+            <td class="tblTxt">Number of Lamps:</td>
+            <td><input ng-model="NumberOfLamps" class="tblInput"></td>
+          </tr>
+          <tr>
+            <td style="color:#f28c31">Total:<br />
+                KiloWatts:
+            </td>
+            <td style="color:#39b54a">
+              {{TotalWatts()}}W (Watts)<br />
+              {{KiloWatts()}}kW (KiloWatts)
+            </td>
+          </tr>
+          <tr>
+            <td class="tblTxt">Hours of use per Day:</td>
+            <td><input ng-model="HoursPerDay" class="tblInput"></td>
+          </tr>
+          <tr>
+            <td class="tblTxt">Days of use per Week:</td>
+            <td><input ng-model="DaysPerWeek" class="tblInput"></td>
+          </tr>
+          <tr>
+            <td class="tblTxt">Weeks of use per Year:</td>
+            <td><input ng-model="WeeksPerYear" class="tblInput"></td>
+          </tr>
+          <tr>
+            <td style="color:#f28c31">
+              Anual Saving:
+            <td style="color:#39b54a">
+              {{AnualSaving() | number:2}}kW/Year
+          </tr>
+          <tr>
+            <td class="tblTxt">Energy cost per kWh:</td>
+            <td><input ng-model="EnergyCost" class="tblInput" placeholder="Typically £0.10"></td>
+          </tr>
+          <tr>
+            <td style="color:#f28c31">
+              Total Savings:
+            </td>
+            <td style="color:#39b54a">
+              £{{TotalSavings() | number:2}}
+            </td>
+          </tr>
+        </table>
       </div>
-    </section>
+      </div>
   </div>
 </section>
 
