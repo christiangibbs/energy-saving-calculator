@@ -17,9 +17,9 @@
   <!-- Styles -->
   <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
-<body>
+<body ng-app="calcApp" ng-init="" ng-controller="myCtrl1">
 
-
+<!--
   <section id="buttons" style="overflow: hidden; padding-bottom: 20px;">
     <div class="btn-savings-calculator">
       Energy Saving Calculator
@@ -28,78 +28,202 @@
       Recommend a replacement
     </div>
   </section>
+-->
 
 <section id="calc-container">
-  <div id="content">
-    <div class="heading">
-      <h1>Energy Saving Calculator</h1>
-      <p>This Energy Saving Calculator is used to determine your annual energy savings. when replacing your lighting solution.</p>
-    </div>
-
-    <div class="hdr-step">
-      <h2>Calculator</h2>
-    </div>
-    <div class="content">
-      <p>Calculate the total power (kilowatts, kW) saved by upgrading your lighting.</p>
-
-      <div ng-app="calcApp" ng-init="" ng-controller="myCtrl1">
-        <table class="tblContainer">
-          <tr>
-            <td class="tblTxt">Original Watts:</td>
-            <td><input ng-model="OriginalWatts" class="tblInput"></td>
-          </tr>
-          <tr>
-            <td class="tblTxt">Replacement Watts:</td>
-            <td><input ng-model="ReplacementWatts" class="tblInput"></td>
-          </tr>
-          <tr>
-            <td class="tblTxt">Number of Lamps:</td>
-            <td><input ng-model="NumberOfLamps" class="tblInput"></td>
-          </tr>
-          <tr>
-            <td style="color:#f28c31">Total:<br />
-                KiloWatts:
-            </td>
-            <td style="color:#39b54a">
-              {{TotalWatts()}}W (Watts)<br />
-              {{KiloWatts()}}kW (KiloWatts)
-            </td>
-          </tr>
-          <tr>
-            <td class="tblTxt">Hours of use per Day:</td>
-            <td><input ng-model="HoursPerDay" class="tblInput"></td>
-          </tr>
-          <tr>
-            <td class="tblTxt">Days of use per Week:</td>
-            <td><input ng-model="DaysPerWeek" class="tblInput"></td>
-          </tr>
-          <tr>
-            <td class="tblTxt">Weeks of use per Year:</td>
-            <td><input ng-model="WeeksPerYear" class="tblInput"></td>
-          </tr>
-          <tr>
-            <td style="color:#f28c31">
-              Anual Saving:
-            <td style="color:#39b54a">
-              {{AnualSaving() | number:2}}kW/Year
-          </tr>
-          <tr>
-            <td class="tblTxt">Energy cost per kWh:</td>
-            <td><input ng-model="EnergyCost" class="tblInput" placeholder="Typically £0.10"></td>
-          </tr>
-          <tr>
-            <td style="color:#f28c31">
-              Total Savings:
-            </td>
-            <td style="color:#39b54a">
-              £{{TotalSavings() | number:2}}
-            </td>
-          </tr>
-        </table>
-      </div>
-      </div>
+  <div class="heading">
+    <h1>Energy Saving Calculator</h1>
+    <p>This Energy Saving Calculator is used to determine your annual energy savings. when replacing your lighting solution.</p>
   </div>
-</section>
 
+  <div class="hdr-step">
+    <h2>Calculator</h2>
+  </div>
+  <div class="content">
+    <p>Calculate the total power (kilowatts, kW) saved by upgrading your lighting.</p>
+
+    <div>
+      <table class="tblContainer">
+        <tr>
+          <td class="tblTxt">Original Watts:</td>
+          <td><input ng-model="OriginalWatts" class="tblInput"></td>
+        </tr>
+        <tr>
+          <td class="tblTxt">Replacement Watts:</td>
+          <td><input ng-model="ReplacementWatts" class="tblInput"></td>
+        </tr>
+        <tr>
+          <td class="tblTxt">Number of Lamps:</td>
+          <td><input ng-model="NumberOfLamps" class="tblInput"></td>
+        </tr>
+        <tr>
+          <td style="color:#f28c31">Total:<br />
+              KiloWatts:
+          </td>
+          <td style="color:#39b54a">
+            {{TotalWatts()}}W (Watts)<br />
+            {{KiloWatts()}}kW (KiloWatts)
+          </td>
+        </tr>
+        <tr>
+          <td class="tblTxt">Hours of use per Day:</td>
+          <td><input ng-model="HoursPerDay" class="tblInput"></td>
+        </tr>
+        <tr>
+          <td class="tblTxt">Days of use per Week:</td>
+          <td><input ng-model="DaysPerWeek" class="tblInput"></td>
+        </tr>
+        <tr>
+          <td class="tblTxt">Weeks of use per Year:</td>
+          <td><input ng-model="WeeksPerYear" class="tblInput"></td>
+        </tr>
+        <tr>
+          <td style="color:#f28c31">
+            Anual Saving:
+          <td style="color:#39b54a">
+            {{AnualSaving() | number:2}}kW/Year
+        </tr>
+        <tr>
+          <td class="tblTxt">Energy cost per kWh:</td>
+          <td><input ng-model="EnergyCost" class="tblInput" placeholder="Typically £0.10"></td>
+        </tr>
+        <tr>
+          <td style="color:#f28c31">
+            Total Savings:
+          </td>
+          <td style="color:#39b54a">
+            £{{TotalSavings() | number:2}}
+          </td>
+        </tr>
+      </table>
+    </div>
+    </div>
+</section>
+<section id="recommend-product">
+  <div class="heading">
+    <h1>Recommend a Product</h1>
+    <p>This Energy Saving Calculator is used to determine your annual energy savings. when replacing your lighting solution.</p>
+  </div>
+
+  <div class="hdr-step">
+    <h2>Recommend a Product</h2>
+  </div>
+  <script>
+    // Array 1
+    var OriginalProducts = ["600x600 4x18w (72w Total)", "1200x600 4x36w (144w Total)", "Halogen Downlight 50w", "High Bay Light 250w",
+    "High Bay Light 400w", "Low Bay Light 250w", "Low Bay Light 400w", "18w Downlight", "26w Downlight",
+    "Twin 18w Downlight", "42w Downlight", "Twin 26w"];
+
+    // Array 2
+    var ReplacementProducts = ["600x600 LED Panel 40w", "1200x600 LED Panel 72w", "10w LED 12-1 Downlight", "160w LED High Bay",
+    "200w LED High Bay", "120w LED Low Bay", "180w LED Low Bay", "12w LED Circular Panel", "15w LED Circular Panel", "18w LED Circular Panel",
+    "20w LED Circular Panel", "26w LED Circular Panel"];
+
+    // Hyperlink Array
+
+    // Begin writing Option - Select
+    document.write('<select id="OriginalProducts" ng-model="RecommendOriginal">');
+
+    for (n = 0; n < OriginalProducts.length; n++) {
+      document.write('<option value ="' + OriginalProducts[n] + '">' + OriginalProducts[n] + '</option>');
+    }
+
+    document.write('</select>');
+
+    // Function to determine replacement
+    function RecommendReplacement() {
+      // Get Product Name
+      var SelectedProduct = document.getElementById("OriginalProducts").value;
+      // Get Position in Array 1
+      var PositionInArray = OriginalProducts.indexOf(SelectedProduct);
+      // Match product in Array 2 to Array 1
+      //document.getElementById("ReplacementProduct").innerHTML = ReplacementProducts[PositionInArray];
+
+      var image = document.getElementById("ReplacementImg");
+      if (SelectedProduct == OriginalProducts[0]){
+        document.getElementById("ReplacementProduct").innerHTML = ReplacementProducts[0];
+        image.src = "images/600x600New.jpg";
+        document.getElementById("ReplacementURl").href = "http://www.lampshoponline.com/40w-led-panel-600mm-x-600mm-c-w-driver/";
+      }
+
+      if (SelectedProduct == OriginalProducts[1]){
+        document.getElementById("ReplacementProduct").innerHTML = ReplacementProducts[1];
+        image.src = "images/1200x1200New.jpg";
+        document.getElementById("ReplacementURl").href = "http://www.lampshoponline.com/75w-led-panel-1200mm-x-600mm/";
+      }
+
+      if (SelectedProduct == OriginalProducts[2]){
+        document.getElementById("ReplacementProduct").innerHTML = ReplacementProducts[2];
+        image.src = "images/HalogenNew.jpg";
+        document.getElementById("ReplacementURl").href = "http://www.lampshoponline.com/all-in-one-10w-led-dimmable-downlight/";
+      }
+
+      if (SelectedProduct == OriginalProducts[3]){
+        document.getElementById("ReplacementProduct").innerHTML = ReplacementProducts[3];
+        image.src = "images/HighbayNew.jpg";
+        document.getElementById("ReplacementURl").href = "http://www.lampshoponline.com/160w-led-highbay-5000k/";
+      }
+
+      if (SelectedProduct == OriginalProducts[4]){
+        document.getElementById("ReplacementProduct").innerHTML = ReplacementProducts[4];
+        image.src = "images/HighbayNew.jpg";
+        document.getElementById("ReplacementURl").href = "http://www.lampshoponline.com/160w-led-highbay-5000k/";
+      }
+
+      if (SelectedProduct == OriginalProducts[5]){
+        document.getElementById("ReplacementProduct").innerHTML = ReplacementProducts[5];
+        image.src = "images/LowbayNew.jpg";
+        document.getElementById("ReplacementURl").href = "http://www.lampshoponline.com";
+      }
+
+      if (SelectedProduct == OriginalProducts[6]){
+        document.getElementById("ReplacementProduct").innerHTML = ReplacementProducts[6];
+        image.src = "images/LowbayNew.jpg";
+        document.getElementById("ReplacementURl").href = "http://www.lampshoponline.com";
+      }
+
+      if (SelectedProduct == OriginalProducts[7]){
+        document.getElementById("ReplacementProduct").innerHTML = ReplacementProducts[7];
+        image.src = "images/DownlightNew.jpg";
+        document.getElementById("ReplacementURl").href = "http://www.lampshoponline.com/12w-round-led-light-panel-174mm-18w-pl-replacement/";
+      }
+
+      if (SelectedProduct == OriginalProducts[8]){
+        document.getElementById("ReplacementProduct").innerHTML = ReplacementProducts[8];
+        image.src = "images/DownlightNew.jpg";
+        document.getElementById("ReplacementURl").href = "http://www.lampshoponline.com/15w-round-led-light-panel-200mm-26w-pl-replacement/";
+      }
+
+      if (SelectedProduct == OriginalProducts[9]){
+        document.getElementById("ReplacementProduct").innerHTML = ReplacementProducts[9];
+        image.src = "images/DownlightNew.jpg";
+        document.getElementById("ReplacementURl").href = "http://www.lampshoponline.com/18w-round-led-light-panel-225mm-twin-18w-pl-replacement/";
+      }
+
+      if (SelectedProduct == OriginalProducts[10]){
+        document.getElementById("ReplacementProduct").innerHTML = ReplacementProducts[10];
+        image.src = "images/DownlightNew.jpg";
+        document.getElementById("ReplacementURl").href = "http://www.lampshoponline.com/20w-round-led-light-panel-240mm-42w-pl-t-replacement/";
+      }
+
+      if (SelectedProduct == OriginalProducts[11]){
+        document.getElementById("ReplacementProduct").innerHTML = ReplacementProducts[11];
+        image.src = "images/DownlightNew.jpg";
+        document.getElementById("ReplacementURl").href = "http://www.lampshoponline.com/24w-round-led-light-panel-300mm-twin-26w-pl-replacement/";
+      }
+    }
+
+
+  </script>
+  <button onclick="RecommendReplacement()">Recommend Product</button><br />
+  <div class="RecommendedProduct" style="float: left;">
+    <div id="ReplacementProduct">Replacement Product</div>
+    <img id="ReplacementImg" src="#" style="height: 250px;"><br />
+    <a id="ReplacementURl" href="http://www.lampshoponline.com">Click to buy</a>
+  </div>
+
+
+
+</section>
 </body>
 </html>

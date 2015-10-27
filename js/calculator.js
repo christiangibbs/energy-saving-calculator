@@ -25,4 +25,5 @@ app.controller('myCtrl1', function($scope) {
   $scope.TotalSavings = function() {
     return (($scope.AnualSaving() * $scope.EnergyCost));
   }
+
 });
